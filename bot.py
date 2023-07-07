@@ -25,7 +25,7 @@ def get_server_info(message):
                    f"Название: {info.server_name}\n"\
                    f"Игра: {info.game}\n"\
                    f"Карта: {info.map_name}\n"\
-                   f"Игроки: {info.player_count}/{info.max_players} ({info.bot_count} - боты)\n"\
+                   f"Игроки: {info.player_count}/{info.max_players} ({info.bot_count} боты)\n"\
                    f"VAC: {vac_status}\n\n"\
                    f"{all_players}"
     
