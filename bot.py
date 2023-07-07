@@ -37,7 +37,7 @@ while True:
         for event in longpoll.listen():
             if event.type == VkBotEventType.MESSAGE_NEW:
                 message = event.object.message
-                text = message['text']
+                text = message['text'].lower()
 
                 if text == "!сервер":
                     get_server_info(message)
