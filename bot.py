@@ -22,11 +22,11 @@ def get_server_info(message):
             all_players += f"{count}. {player.name} | {player.score}\n"
 
     send_message = f"Информация о сервере:\n"\
-              f"Название: {info.server_name}\n"\
-              f"Карта: {info.map_name}\n"\
-              f"Игроки: {info.player_count}/{info.max_players} ({info.bot_count} - боты)\n"\
-              f"VAC: {vac_status}\n\n"\
-              f"{all_players}"
+                   f"Название: {info.server_name}\n"\
+                   f"Карта: {info.map_name}\n"\
+                   f"Игроки: {info.player_count}/{info.max_players} ({info.bot_count} - боты)\n"\
+                   f"VAC: {vac_status}\n\n"\
+                   f"{all_players}"
     
     vk.messages.send(peer_id=message['peer_id'], message=send_message, random_id=0)
 
