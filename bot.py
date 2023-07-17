@@ -35,16 +35,12 @@ def get_server_info(message):
 def get_online_players(message):
     players = a2s.players(config.address)
 
-    all_players, count = "", 0
-    for player in players:
-        count += 1
-        if count == 1:
-            all_players += f"Игроки онлайн:\n{count}. {player.name} | {player.score}\n"
-        else:
+    if len(players) == 0:
+        all_players = "В данный момент на сервере отсутствуют игроки"
+    else:
+        all_players, count = "Игроки онлайн:\n", 0
+        for player in players:
             all_players += f"{count}. {player.name} | {player.score}\n"
-
-    if count == 0:
-        all_players += "В данный момент на сервере отсутствуют игроки"
 
     vk.messages.send(peer_id=message['peer_id'], message=all_players, random_id=0)
 
