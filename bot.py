@@ -1,4 +1,5 @@
 import config
+import time
 import a2s
 import vk_api
 from vk_api.bot_longpoll import VkBotLongPoll, VkBotEventType
@@ -45,6 +46,12 @@ def get_online_players(message):
     vk.messages.send(peer_id=message['peer_id'], message=all_players, random_id=0)
 
 
+def get_server_ping(message):
+    info = a2s.info(config.address)
+    ping = "{:.2f}".format(time.time() - info.ping)
+    vk.messages.send(peer_id=message['peer_id'], message=f"Пинг до сервера: {ping}с.", random_id=0)
+
+
 while True:
     try:
         for event in longpoll.listen():
@@ -56,5 +63,7 @@ while True:
                     get_server_info(message)
                 elif text == "!онлайн":
                     get_online_players(message)
+                elif text == "!пинг":
+                    get_server_ping(message)
     except Exception as e:
         print(f"LongPoll Exception: {e}")
