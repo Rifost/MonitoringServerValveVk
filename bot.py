@@ -32,6 +32,23 @@ def get_server_info(message):
     vk.messages.send(peer_id=message['peer_id'], message=send_message, random_id=0)
 
 
+def get_online_players(message):
+    players = a2s.players(config.address)
+
+    all_players, count = "", 0
+    for player in players:
+        count += 1
+        if count == 1:
+            all_players += f"Игроки онлайн:\n{count}. {player.name} | {player.score}\n"
+        else:
+            all_players += f"{count}. {player.name} | {player.score}\n"
+
+    if count == 0:
+        all_players += "В данный момент на сервере отсутствуют игроки"
+
+    vk.messages.send(peer_id=message['peer_id'], message=all_players, random_id=0)
+
+
 while True:
     try:
         for event in longpoll.listen():
@@ -41,5 +58,7 @@ while True:
 
                 if text == "!сервер":
                     get_server_info(message)
+                elif text == "!онлайн":
+                    get_online_players(message)
     except Exception as e:
         print(f"LongPoll Exception: {e}")
