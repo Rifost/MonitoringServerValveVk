@@ -1,4 +1,4 @@
-# MonitoringServerVk
+# MonitoringServerValveVk
 Отслеживание игровых серверов в играх от Valve через вк бота.
 
 ## Команды
